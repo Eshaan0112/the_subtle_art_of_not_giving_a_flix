@@ -1,1 +1,4 @@
-# the_subtle_art_of_not_giving_a_flix
+# Repo under development
+
+## Content Based Filtering for recommendation engine
+### Data collection using Google API
