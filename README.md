@@ -1,4 +1,2 @@
 # Repo under development...
-
-## Content Based Filtering for recommendation engine
-### Data collection using Google API
+The basic plan is to have a user input a book name and provide the top 10 recommendations using content based filtering from the Google books API and display on the frontend. Eventually a two tower architecture is to be implemented and then we can compare how much better a hybrid recommendation system is using basic statistical model design metrics such as Precision/Recall. 
