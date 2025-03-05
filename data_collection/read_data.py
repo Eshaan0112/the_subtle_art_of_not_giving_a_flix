@@ -1,3 +1,4 @@
+# Import statements
 import requests
 import pandas as pd
 import time
@@ -6,29 +7,30 @@ def fetch_books(query, max_books=1000, max_results=40):
     """Query google API to fetch books
 
     Args:
-        query ([type]): [description]
-        max_books (int, optional): [description]. Defaults to 1000.
-        max_results (int, optional): [description]. Defaults to 40.
+        query (List): Book genres
+        max_books (int, optional): Maximum number of books. Defaults to 1000.
+        max_results (int, optional): Maximum number of results Defaults to 40.
 
     Returns:
-        [type]: [description]
+        books_data (Datafrane): Books dataset
     """
     books_data = []
     start_index = 0
     total_fetched = 0
 
+    # Query google API till we get desired number of books
     while total_fetched < max_books:
         url = f"https://www.googleapis.com/books/v1/volumes?q={query}&maxResults={max_results}&startIndex={start_index}"
         response = requests.get(url)
         
         if response.status_code != 200:
-            print(f"Error fetching data for query '{query}'")
-            break
-
+            raise ValueError(f"Error fetching data for query '{query}'")
+        
         books = response.json().get("items", [])
         if not books:
-            break
-
+            raise ValueError("Unable to query books")
+        
+        # Build dataset
         for book in books:
             volume_info = book.get("volumeInfo", {})
             books_data.append({
@@ -51,7 +53,7 @@ def fetch_books(query, max_books=1000, max_results=40):
     return books_data
 
 
-if __name__=="__main__":
+def main_data_collection():
     # Define diverse search queries
     queries = ["fiction", "non-fiction", "science", "history", "fantasy", "technology", "romance", "mystery", "self-help"]
     books_dataset = []
@@ -64,6 +66,11 @@ if __name__=="__main__":
     # Convert to DataFrame and save
     df_books = pd.DataFrame(books_dataset)
     df_books.to_csv("books_dataset.csv", index=False)
+    print("Dataset stored as CSV in same directory")
 
     print(f"Total Books Fetched: {len(df_books)}")
-    print(df_books.head())
+    # print(df_books.head())
+
+if __name__ == "__main__":
+    main_data_collection()
+    
