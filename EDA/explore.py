@@ -3,6 +3,7 @@ import pandas as pd
 
 
 def preprocess(df):
+    df = df.dropna(subset=['Description']) 
     return df
 
 

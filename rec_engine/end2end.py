@@ -6,15 +6,16 @@ from EDA.explore import preprocess
 from content_based import generate_recs
 
 if __name__=="__main__":
-    # Get dataset
-    main_data_collection()
+    # Get dataset - run only once
+    # main_data_collection()
 
     # Preprocess dataset
     df = pd.read_csv("books_dataset.csv")
     df = preprocess(df)
 
-    print(sys.path)
     # Generate recommendations
-    recs = generate_recs(df, 'The Fault in Our Stars', 2)
+    book, num = 'Radiance', 10 # num set of books that are able to be recommended:  df['Title'].to_list()
+    recs = generate_recs(df,book, num) # top num recommendations
+    print(f'Top {num} recommendations:')
     print(recs)
     
