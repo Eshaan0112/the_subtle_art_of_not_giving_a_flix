@@ -1,5 +1,4 @@
 # Import statements
-
 import pandas as pd
 from data_collection.read_data import main_data_collection
 from EDA.explore import preprocess
