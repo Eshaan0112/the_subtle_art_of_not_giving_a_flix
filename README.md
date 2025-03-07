@@ -18,7 +18,6 @@ Tokenization and semantic layering of words in descriptions of books is used to 
 Word vectors are dense numerical representations of words. Words with similar meanings have similar vector representations, capturing their semantic similarity. I use pre-trained word vectors from `spacy` (en_core_web_md) that are trained on large corpora, like Wikipedia, to represent words in a multi-dimensional space.
 
 ## How to run the project
-### NOTE: poetry basics and ML basics are assumed to run this project
 After setting up the poetry environment: 
 Run recommendation system from: `/the_subtle_art_of_giving_a_flix/rec_engine` as `python end2end.py`
   
